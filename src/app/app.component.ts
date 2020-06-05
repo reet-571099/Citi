@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'historicalSimulation';
+
+
+public icon = 'favorite_border'; 
+
+
+public changeIcon(newIcon: string) {
+    this.icon = newIcon; 
+}
 }
