@@ -1,0 +1,16 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { portfolioData } from '../dashboard/dashboard.component';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DataService {
+
+  constructor( public http:HttpClient) { }
+
+  gettabledata(){
+    return this.http.get<portfolioData[]>("http://localhost:8081/hllo");
+   //return this.http.get<portfolioData[]>("http://localhost:8080/portfolioData");
+  }
+}

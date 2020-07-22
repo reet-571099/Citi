@@ -18,12 +18,16 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { AppRoutingModule } from './app-routing/app-routing.module';
-
-
+import { NgImageSliderModule } from 'ng-image-slider';
+import {TableModule} from 'primeng/table';
+import {SliderModule} from 'primeng/slider';
+ 
+import { HttpClientModule } from '@angular/common/http';
 
 import 'hammerjs';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -36,6 +40,7 @@ import { HomeComponent } from './home/home.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
+    DashboardComponent,
   
   ],
   imports: [
@@ -54,9 +59,11 @@ import { HomeComponent } from './home/home.component';
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,
-    AppRoutingModule
-
-
+    AppRoutingModule,
+    NgImageSliderModule,
+    TableModule,
+    SliderModule,
+    HttpClientModule
   ],
   providers: [],
   entryComponents: [

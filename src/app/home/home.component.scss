@@ -2,3 +2,36 @@
     width: 100% !important;
     height: 75vh;
   }
+
+$lt-gray: #ddd;
+$background-dark: #512DA8;
+$background-light: rgba(219, 219, 219, 0.822);
+$background-pale: #D1C4E9;
+$background-moredark: rgb(3, 0, 10);
+
+@mixin zero-margin($pad-up-down, $pad-left-right) {
+    margin: 0px auto;
+    padding: $pad-up-down $pad-left-right;
+}
+
+.jumbotron {
+    @include zero-margin(70px,30px);
+    background: $background-light ;
+    color:#003B70;
+    min-height: 500px;
+}
+
+.active {
+    background: $background-moredark ;
+}
+
+p {
+    font-family: 'Oxygen', sans-serif;
+}
+
+
+body {
+    padding: 0;
+    margin: 100;
+    font-family: 'Oxygen', sans-serif;
+}

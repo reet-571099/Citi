@@ -1,5 +1,5 @@
 {
-  "name": "historical-simulation",
+  "name": "arbitrage-recommendation",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -26,6 +26,9 @@
     "angular-material": "^1.1.22",
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
+    "ng-image-slider": "^2.5.0",
+    "primeicons": "^4.0.0",
+    "primeng": "^9.1.3",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
