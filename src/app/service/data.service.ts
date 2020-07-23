@@ -13,4 +13,9 @@ export class DataService {
     return this.http.get<portfolioData[]>("http://localhost:8080/hllo");
    //return this.http.get<portfolioData[]>("http://localhost:8080/portfolioData");
   }
+
+  saveCompany(ind:string,num:number)
+  {
+    return this.http.get<number>(`http://localhost:8080/company/${ind}`);
+  }
 }

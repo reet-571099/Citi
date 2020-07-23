@@ -32,6 +32,7 @@ export class DashboardComponent implements OnInit {
    MrTimeout: any;
    scrollableCols:any;
    isActive:boolean=false;
+   icons:string[]=[];
    pageSizeOptions = [10, 25, 50, { showAll: "All" }];
   constructor( public dataservice:DataService) { 
   }
@@ -48,13 +49,32 @@ export class DashboardComponent implements OnInit {
     this.dataservice.gettabledata().subscribe (
       data=> this.data = data
     ); 
-   
+    console.log("HELLO INSIDE INIT");
+  // this.getdata();
+   console.log("HELLO INSIDE2 INIT");
  setTimeout(
   function(){ 
     location.reload(); 
   }, 36000);  
 }
-
+getdata()
+{
+  console.log("HELLO"+this.data);
+  for(var i=0;i<50;i++)
+  {
+   console.log("HELLO"+this.data[0].like);
+    if(this.data[i].like==1)
+    {
+      this.icons.push('favorite');
+      console.log("ICON"+this.icons[i]);
+    }
+    else
+    {
+    this.icons.push('favorite_border');
+    console.log("ICON"+this.icons[i]);
+  }
+ }
+}
 onRowSelect(event) {
    // this.messageService.add({severity:'info', summary:'Car Selected', detail:'dt: ' + event.data.dt});
 }
@@ -127,19 +147,33 @@ public changeIcon(dt:number, newIcon: string) {
 }
 
 
-deletebyid(dt)
+savebyid(row,dt)
   {
-    console.log("this selected:"+dt);
-    if(this.icon=='favorite_border')
-    {
-      this.icon='favorite';
-    }
-    else
-    {
-      this.icon='favorite_border';
-    }
-    
+    console.log("DELETE "+dt+ " "+ this.data[dt].like);
+
+    if(this.data[dt].like==1)
+     {
+            this.data[dt].like=0;
+            this.dataservice.saveCompany(this.data[dt].cp,this.data[dt].like).subscribe (
+              data => {
+                console.log("Deleted")
+              }
+            );
+
+     }
+     else
+     {
+       this.data[dt].like=1;
+       this.dataservice.saveCompany(this.data[dt].cp,this.data[dt].like).subscribe (
+        data => {
+          console.log("SAVED")
+        }
+      );
+     }
+     console.log("DELETE "+dt+ " "+ this.data[dt].like);      
+            
+
   }
 
-
+    
 }

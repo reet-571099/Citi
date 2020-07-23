@@ -1,4 +1,4 @@
-{{data[0].like}};
+
  
  <div id="center" *ngIf="!data"  style="height:700px;">
     <div *ngIf="!data" class="loader"></div>
@@ -7,7 +7,7 @@
   
 
    <div [hidden]="!data">
-    <p-table #my id="customers" [columns]="cols" [value]="data"  selectionMode="single"  [(selection)]="selectedrow"  
+    <p-table style="width:600px;" #my id="customers" [columns]="cols" [value]="data"  selectionMode="single"  [(selection)]="selectedrow"  
       datakey="dt" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)" class="table table-hover table-responsive table-bordered" [responsive]="true" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
        [(first)]="first" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
   
@@ -42,6 +42,7 @@
               <p-slider  [style]="{'padding-left':'10px','width':'100%','margin-top':'8px','color':'red'}" [(ngModel)]="MrFilter"   [min]="1400" [max]="2500" (onChange)="onMrChange($event, my)"></p-slider>
             </div>
           </th>
+          <th></th>
       </tr>
       </ng-template>
      
@@ -51,14 +52,11 @@
         <td>{{rowData.cp}}</td>
         <td>{{rowData.pv}}</td>
         <td>{{rowData.pv}}</td>
-        <td>{{rowData.mr}}</td>
-              <!-- <td>
-               <button mat-toolbar >
-                               </button>
-              
-              </td> -->
-              <td><button (click)="deletebyid(rowData.dt)" mat-toolbar > <mat-icon [ngStyle]="{'color':'red'}">{{icon}}</mat-icon>
-              </button></td>
+        <td>{{rowData.mr}}</td>              
+              <td>
+            
+                <button mat-button *ngIf="rowData.like==1" (click)="savebyid(rowData, rowIndex)" style="color: red;"><span class="fa fa-heart" style="font-size: 1.5em;color:'red';"></span></button>
+                <button mat-button *ngIf="rowData.like==0" (click)="savebyid(rowData, rowIndex)" style="color: red;"><span class="fa fa-heart-o" style="font-size: 1.5em;color:'red';"></span></button></td>
           </tr>
     
       </ng-template>
