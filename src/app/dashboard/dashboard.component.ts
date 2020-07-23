@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core'
-import { SortEvent } from 'primeng/api';
 import { DataService } from '../service/data.service';
+
  export class portfolioData {
   constructor(
-    public dt: string,
+    public dt: number,
     public cp: number,
     public pv:number,
-    public mr:number
+    public mr:number,
+    public like:number
   ){
 
   }
@@ -17,16 +18,23 @@ import { DataService } from '../service/data.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-        
+
+  first = 0;
+  rows = 10;
+
   data;
   hvar:number;
    selectedrow:portfolioData;
    list:portfolioData[];
+   PrFilter:number;
+   PrTimeout:any;
    MrFilter: number;
    MrTimeout: any;
    scrollableCols:any;
+   isActive:boolean=false;
    pageSizeOptions = [10, 25, 50, { showAll: "All" }];
-  constructor( public dataservice:DataService) { }
+  constructor( public dataservice:DataService) { 
+  }
   cols = [
     { field: "dt", header: "ID" },
     { field: "cp", header: "Company Name" },
@@ -36,44 +44,16 @@ export class DashboardComponent implements OnInit {
   
   ];
  ngOnInit(): void {
-	 
-	  this.dataservice.gettabledata().subscribe (
+
+    this.dataservice.gettabledata().subscribe (
       data=> this.data = data
     ); 
-  
-  
-  
-this.scrollableCols = [
-  { field: 'year', header: 'Year' },
-  { field: 'brand', header: 'Brand' },
-  { field: 'color', header: 'Color' }
-];
-  
-  
-  
-  }
    
-    customSort(event: SortEvent) {
-      event.data.sort((data1, data2) => {
-          let value1 = data1[event.field];
-          let value2 = data2[event.field];
-          let result = null;
-
-          if (value1 == null && value2 != null)
-              result = -1;
-          else if (value1 != null && value2 == null)
-              result = 1;
-          else if (value1 == null && value2 == null)
-              result = 0;
-          else if (typeof value1 === 'string' && typeof value2 === 'string')
-              result = value1.localeCompare(value2);
-          else
-              result = (value1 < value2) ? -1 : (value1 > value2) ? 1 : 0;
-
-          return (event.order * result);
-      });
-  }
-
+ setTimeout(
+  function(){ 
+    location.reload(); 
+  }, 36000);  
+}
 
 onRowSelect(event) {
    // this.messageService.add({severity:'info', summary:'Car Selected', detail:'dt: ' + event.data.dt});
@@ -82,9 +62,6 @@ onRowSelect(event) {
 onRowUnselect(event) {
     
 }
-first=0;
-rows=10;
-
 
 
 FilterUtils: any['custom'] = (value, filter): boolean => {
@@ -108,4 +85,61 @@ this.MrTimeout = setTimeout(() => {
   dt.filter(event.value, 'mr', 'gt');
 }, 250);
 }
+
+onPrChange(event, dt) {
+  if (this.PrTimeout) {
+    clearTimeout(this.PrTimeout);
+  }
+  
+  this.PrTimeout = setTimeout(() => {
+    dt.filter(event.value, 'pv', 'gt');
+  }, 250);
+  }
+  
+
+
+next() {
+  this.first = this.first + this.rows;
+}
+
+prev() {
+  this.first = this.first - this.rows;
+}
+
+reset() {
+  this.first = 0;
+}
+
+isLastPage(): boolean {
+  return this.first === (this.data.length - this.rows);
+}
+
+isFirstPage(): boolean {
+  return this.first === 0;
+}
+
+icon = 'favorite_border';
+public changeIcon(dt:number, newIcon: string) {
+  if(this.data[dt].like==1)
+  {
+    this.icon=newIcon;
+  }
+}
+
+
+deletebyid(dt)
+  {
+    console.log("this selected:"+dt);
+    if(this.icon=='favorite_border')
+    {
+      this.icon='favorite';
+    }
+    else
+    {
+      this.icon='favorite_border';
+    }
+    
+  }
+
+
 }

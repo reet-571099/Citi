@@ -1,52 +1,69 @@
-<!-- <div id="center" *ngIf="!data"  style="height:700px;">
+{{data[0].like}};
+ 
+ <div id="center" *ngIf="!data"  style="height:700px;">
     <div *ngIf="!data" class="loader"></div>
     <div *ngIf="!data">  <h3 style="color: black;">Loading . . . Please Wait</h3></div>
   </div>
-   -->
+  
 
-<div>
-  <p-table #my id="customers" [columns]="cols" [value]="data"  selectionMode="single"  [(selection)]="selectedrow"    datakey="dt"
-(onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)" [scrollable]="true" scrollHeight="450px" class="table table-hover table-responsive table-bordered" [responsive]="true">
-<ng-template pTemplate="caption">
-  <div style="text-align: right">        
-      <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
-      <input type="text" pInputText size="50" placeholder="Search Here" (input)="my.filterGlobal($event.target.value, 'contains')" style="width:auto">
-  </div>
-</ng-template>
-    <ng-template pTemplate="header" let-columns >
-
+   <div [hidden]="!data">
+    <p-table #my id="customers" [columns]="cols" [value]="data"  selectionMode="single"  [(selection)]="selectedrow"  
+      datakey="dt" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)" class="table table-hover table-responsive table-bordered" [responsive]="true" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+       [(first)]="first" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+  
+  <ng-template pTemplate="caption">
+    <div style="text-align: right">        
+        <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+        <input type="text" pInputText size="50" placeholder="Search Here" (input)="my.filterGlobal($event.target.value, 'contains')" style="width:auto">
+    </div>
+  </ng-template>
+      <ng-template pTemplate="header" let-columns >
+  
+        <tr>
+          <th  *ngFor="let col of columns">
+              {{col.header}}
+          </th>
+          <th> </th>
+          
+      </tr>
+  
       <tr>
-        <th  *ngFor="let col of columns" [pSortableColumn]="col.field">
-            {{col.header}}
-            <p-sortIcon [field]="col.field"></p-sortIcon>
-        </th>
-        
-    </tr>
-
-    <tr>
-        <th  *ngFor="let col of columns" [ngSwitch]="col.field">
-          <input *ngSwitchCase="'dt'" pInputText type="text" placeholder="YYYY-MM-DD" (input)="my.filter($event.target.value, col.field, 'contains')">
-          <input *ngSwitchCase="'cp'" pInputText type="text" placeholder="Closing Price" (input)="my.filter($event.target.value, col.field, 'contains')">
-          <input *ngSwitchCase="'pv'" pInputText type="text"  placeholder="Percent Return" (input)="my.filter($event.target.value, col.field, 'contains')">
-          <div *ngSwitchCase="'mr'" style="align-content: center;">
-            Value > {{MrFilter}}
-            <i class="pi pi-times" (click)="MrFilter=null;my.filter(null, col.field, col.filterMatchMode)" style="cursor:pointer;" *ngIf="MrFilter"></i>
-            <p-slider  [style]="{'padding-left':'10px','width':'100%','margin-top':'8px','color':'red'}" [(ngModel)]="MrFilter"   [min]="1400" [max]="2500" (onChange)="onMrChange($event, my)"></p-slider>
-          </div>
-        </th>
-    </tr>
-    </ng-template>
+          <th  *ngFor="let col of columns" [ngSwitch]="col.field">
+            <input *ngSwitchCase="'cp'" pInputText type="text" placeholder="Enter company name" (input)="my.filter($event.target.value, col.field, 'contains')">
+            <div *ngSwitchCase="'pv'" style="align-content: center;">
+              Value > {{PrFilter}}
+              <i class="pi pi-times" (click)="PrFilter=null;my.filter(null, col.field, col.filterMatchMode)" style="cursor:pointer;" *ngIf="PrFilter"></i>
+              <p-slider  [style]="{'padding-left':'10px','width':'100%','margin-top':'8px','color':'red'}" [(ngModel)]="PrFilter"   [min]="-5" [max]="10" (onChange)="onPrChange($event, my)"></p-slider>
+            </div>        
+           
+            <div *ngSwitchCase="'mr'" style="align-content: center;">
+              Value > {{MrFilter}}
+              <i class="pi pi-times" (click)="MrFilter=null;my.filter(null, col.field, col.filterMatchMode)" style="cursor:pointer;" *ngIf="MrFilter"></i>
+              <p-slider  [style]="{'padding-left':'10px','width':'100%','margin-top':'8px','color':'red'}" [(ngModel)]="MrFilter"   [min]="1400" [max]="2500" (onChange)="onMrChange($event, my)"></p-slider>
+            </div>
+          </th>
+      </tr>
+      </ng-template>
+     
+      <ng-template  pTemplate="body" let-rowData let-rowIndex="rowIndex"  >
+       <tr>
+        <td>{{rowData.dt}}</td>
+        <td>{{rowData.cp}}</td>
+        <td>{{rowData.pv}}</td>
+        <td>{{rowData.pv}}</td>
+        <td>{{rowData.mr}}</td>
+              <!-- <td>
+               <button mat-toolbar >
+                               </button>
+              
+              </td> -->
+              <td><button (click)="deletebyid(rowData.dt)" mat-toolbar > <mat-icon [ngStyle]="{'color':'red'}">{{icon}}</mat-icon>
+              </button></td>
+          </tr>
+    
+      </ng-template>
    
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-     
-        <tr  [pSelectableRow]="rowData">
-                 <td style="color:black;" *ngFor="let col of columns">
-                    {{rowData[col.field]}}
-            </td>
-        </tr>
-     
-    </ng-template>
- 
-  </p-table>
-
-</div>
+      </p-table>
+   
+  </div>
+  

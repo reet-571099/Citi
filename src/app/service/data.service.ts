@@ -10,7 +10,7 @@ export class DataService {
   constructor( public http:HttpClient) { }
 
   gettabledata(){
-    return this.http.get<portfolioData[]>("http://localhost:8081/hllo");
+    return this.http.get<portfolioData[]>("http://localhost:8080/hllo");
    //return this.http.get<portfolioData[]>("http://localhost:8080/portfolioData");
   }
 }
