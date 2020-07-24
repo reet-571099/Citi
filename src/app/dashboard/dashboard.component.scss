@@ -25,7 +25,6 @@
  #customers {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 80%;
 }
 
 #customers td, #customers th {
@@ -34,17 +33,17 @@
   text-align: center;
 }
 
-#customers tr:nth-child(even){background-color: #dddadab6;}
+#customers tr:nth-child(even){background-color: #e6e3e39a;}
 
 
-#customers tr:hover {background-color: #7ccbf0;}
+#customers tr:hover {background-color: #c5bbee;}
 
 #customers th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: center;
-  background-color:#cac8c8cc;
-  color: white;     
+  background-color:#0c9aecc9;
+  color: black;     
 }
 
  /* Column Priorities */

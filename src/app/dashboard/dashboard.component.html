@@ -6,8 +6,8 @@
   </div>
   
 
-   <div [hidden]="!data">
-    <p-table style="width:600px;" #my id="customers" [columns]="cols" [value]="data"  selectionMode="single"  [(selection)]="selectedrow"  
+   <div [hidden]="!data" style="padding-left:100px;width:1250px;">
+    <p-table  #my id="customers" [columns]="cols" [value]="data"  selectionMode="single"  [(selection)]="selectedrow"  
       datakey="dt" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)" class="table table-hover table-responsive table-bordered" [responsive]="true" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
        [(first)]="first" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
   
@@ -23,7 +23,7 @@
           <th  *ngFor="let col of columns" [ngSwitch]="col.field">
               {{col.header}}
           </th>
-          <th> </th>
+          <th style="width:100px;"> </th>
           
       </tr>
   
@@ -42,7 +42,7 @@
               <p-slider  [style]="{'padding-left':'10px','width':'100%','margin-top':'8px','color':'red'}" [(ngModel)]="MrFilter"   [min]="1400" [max]="2500" (onChange)="onMrChange($event, my)"></p-slider>
             </div>
           </th>
-          <th></th>
+          <th style="width:100px;"></th>
       </tr>
       </ng-template>
      
