@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../service/data.service';
+import { portfolioData } from '../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-cart',
@@ -8,28 +9,40 @@ import { DataService } from '../service/data.service';
 })
 export class CartComponent implements OnInit {
 
-  data;
+  data:portfolioData[]=[];
   constructor( public dataservice:DataService) { 
   }
 
   ngOnInit(): void {
-
-    this.dataservice.gettabledata().subscribe (
-      data=> this.data = data
-    );  
+    this.refreshlist();  
+}
+refreshlist()
+{
+  this.dataservice.gettabledata().subscribe (
+    data=> this.data = data
+  );
 }
 
-deletebyid(cp:string)
+deletebyid(cp:number)
   {
-     console.log("DELETE "+cp+" ");
-     this.dataservice.deletedata(cp).subscribe(
-       response=>
-       {
-         this.data=response;
-         console.log("deletva");
-         location.reload(); 
-       }
-     );
-   }
+     var temp:portfolioData[]=[];
+     var k:number=0;
+     this.data.forEach(function (value) {
+      if(value.cp!=cp)
+      {
+           temp[k]=value;
+           k++;
+      }
+  }); 
+      this.data=temp;
+      this.dataservice.senddata(cp).subscribe(
+        response=>console.log("Data sent")
+      );
+  }
+
+
+
+
+
   }    
 

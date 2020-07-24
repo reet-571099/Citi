@@ -25,10 +25,12 @@ export class DataService {
   //  //return this.http.get<portfolioData[]>("http://localhost:8080/portfolioData");
   // }
 
-  deletedata(ind:string)
+  senddata(cp:number)
   {
-    return this.http.get<any>(`http://localhost:8080/company/${ind}`);
+    return this.http.get<number>(`http://localhost:8080/company/hello/${cp}`);
   }
+
+  
 
 
 }
