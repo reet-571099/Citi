@@ -20,7 +20,7 @@
       <ng-template pTemplate="header" let-columns >
   
         <tr>
-          <th  *ngFor="let col of columns">
+          <th  *ngFor="let col of columns" [ngSwitch]="col.field">
               {{col.header}}
           </th>
           <th> </th>

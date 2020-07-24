@@ -21,13 +21,17 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { NgImageSliderModule } from 'ng-image-slider';
 import {TableModule} from 'primeng/table';
 import {SliderModule} from 'primeng/slider';
- 
+import {CardModule} from 'primeng/card';
+import {MatMenuModule} from '@angular/material/menu';
 import { HttpClientModule } from '@angular/common/http';
+
+
 
 import 'hammerjs';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CartComponent } from './cart/cart.component';
 
 
 
@@ -41,6 +45,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     FooterComponent,
     HomeComponent,
     DashboardComponent,
+    CartComponent,
   
   ],
   imports: [
@@ -63,7 +68,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     NgImageSliderModule,
     TableModule,
     SliderModule,
-    HttpClientModule
+    HttpClientModule,
+    CardModule,
+    MatMenuModule
   ],
   providers: [],
   entryComponents: [

@@ -1,0 +1,26 @@
+<div class="row" style="padding-bottom:10px;overflow-x: hidden;">
+    <div class="column"  *ngFor="let c of data">
+      <div class="card" >
+        <h3 style="text-align: center;" >HDFC</h3>
+        <hr>
+        <table style="text-align: center;"> 
+            <tr><td><b>NSE</b></td><td>{{c.pv}}</td></tr>
+            <hr>
+            <tr><td><b>BSE</b></td><td>{{c.pv}}</td></tr>
+            <hr>
+            <tr><td><b>ARBITRAGE</b></td><td>{{c.mr}}</td></tr>
+            <hr>
+            <tr><td><b>STOCKS</b></td><td>2000</td></tr>
+            <hr>
+            <tr><td><b>PROFIT</b></td><td>100</td></tr>
+            <hr>
+            </table>
+        <div style="float:right">
+         <button (click)="deletebyid(c.cp)" style="color: red;"><span class="fa fa-heart" style="font-size: 1.5em;color:'red';"></span></button>
+        </div>
+
+      </div>
+    </div>
+</div>
+  
+  

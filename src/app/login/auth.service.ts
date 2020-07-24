@@ -17,7 +17,7 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient,private router: Router) {
 
-  }
+  }  
 
   authenticationService(username: String, password: String) {
     return this.http.get(`http://localhost:8081/api/v1/basicauth`,
@@ -34,9 +34,7 @@ export class AuthenticationService {
 
   registerSuccessfulLogin(username, password) {
     sessionStorage.setItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME, username)
-
-
-    
+   
   }
 
   logout() {
