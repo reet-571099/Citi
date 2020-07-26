@@ -1,18 +1,20 @@
-<div class="row" style="padding-bottom:10px;overflow-x: hidden;">
+ <div style="float:center" *ngIf="data[0]==0">NO SAVED COMPANIES</div>
+
+<div *ngIf="data[0]!=0" class="row" style="padding-bottom:10px;overflow-x: hidden;">
     <div class="column"  *ngFor="let c of data">
       <div class="card" >
-        <h3 style="text-align: center;" >HDFC</h3>
+        <h3 style="text-align: center;" >{{c.Symbol}}</h3>
         <hr>
         <table style="text-align: center;"> 
-            <tr><td><b>NSE</b></td><td>{{c.pv}}</td></tr>
+            <tr><td><b>NSE</b></td><td>{{c.NSE}}</td></tr>
             <hr>
-            <tr><td><b>BSE</b></td><td>{{c.pv}}</td></tr>
+            <tr><td><b>BSE</b></td><td>{{c.BSE}}</td></tr>
             <hr>
-            <tr><td><b>ARBITRAGE</b></td><td>{{c.mr}}</td></tr>
+            <tr><td><b>ARBITRAGE</b></td><td>{{c.Arbitrage}}</td></tr>
             <hr>
-            <tr><td><b>STOCKS</b></td><td>2000</td></tr>
+            <tr><td><b>STOCKS</b></td><td>{{c.STOCKS}}</td></tr>
             <hr>
-            <tr><td><b>PROFIT</b></td><td>100</td></tr>
+            <tr><td><b>PROFIT</b></td><td>{{c.Profit}}</td></tr>
             <hr>
             </table>
         <div style="float:right">
@@ -21,6 +23,4 @@
 
       </div>
     </div>
-</div>
-  
-  
+</div> 

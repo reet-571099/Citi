@@ -1,7 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../service/data.service';
-import { portfolioData } from '../dashboard/dashboard.component';
+export class savedData {
+  constructor(
+    public Symbol: number,
+    public NSE: number,
+    public BSE:number,
+    public Arbitrage:number,
+    public STOCKS:number,
+    public Profit:number,
+    public like:number
+  ){
 
+  }
+}
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -9,7 +20,7 @@ import { portfolioData } from '../dashboard/dashboard.component';
 })
 export class CartComponent implements OnInit {
 
-  data:portfolioData[]=[];
+  data:any;
   constructor( public dataservice:DataService) { 
   }
 
@@ -18,17 +29,18 @@ export class CartComponent implements OnInit {
 }
 refreshlist()
 {
-  this.dataservice.gettabledata().subscribe (
+  this.dataservice.getsaveddata().subscribe (
     data=> this.data = data
   );
 }
 
-deletebyid(cp:number)
+
+deletebyid(cp:string)
   {
-     var temp:portfolioData[]=[];
+     var temp:savedData[]=[];
      var k:number=0;
      this.data.forEach(function (value) {
-      if(value.cp!=cp)
+      if(value.Symbol!=cp)
       {
            temp[k]=value;
            k++;

@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
   first = 0;
   rows = 10;
 
-  data;
+  data:portfolioData[];
   hvar:number;
    selectedrow:portfolioData;
    list:portfolioData[];
@@ -154,7 +154,7 @@ savebyid(row,dt)
     if(this.data[dt].like==1)
      {
             this.data[dt].like=0;
-            this.dataservice.saveCompany(this.data[dt].cp,this.data[dt].like).subscribe (
+            this.dataservice.saveCompany(this.data[dt].cp).subscribe (
               data => {
                 console.log("Deleted")
               }
@@ -164,7 +164,7 @@ savebyid(row,dt)
      else
      {
        this.data[dt].like=1;
-       this.dataservice.saveCompany(this.data[dt].cp,this.data[dt].like).subscribe (
+       this.dataservice.saveCompany(this.data[dt].cp).subscribe (
         data => {
           console.log("SAVED")
         }

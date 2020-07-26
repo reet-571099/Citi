@@ -11,23 +11,21 @@ export class DataService {
   constructor( public http:HttpClient) { }
 
   gettabledata(){
-    return this.http.get<portfolioData[]>("http://localhost:8080/hllo");
-   //return this.http.get<portfolioData[]>("http://localhost:8080/portfolioData");
+    return this.http.get<portfolioData[]>("http://localhost:8080/");
   }
 
-  saveCompany(ind:string,num:number)
+  saveCompany(ind:number)
   {
-    return this.http.get<number>(`http://localhost:8080/company/${ind}`);
+    return this.http.get<number>(`http://localhost:8080/save/${ind}`);
   }
 
-  // getsaveddata(){
-  //   return this.http.get<savedData[]>("http://localhost:8080/hllo");
-  //  //return this.http.get<portfolioData[]>("http://localhost:8080/portfolioData");
-  // }
+  getsaveddata(){
+    return this.http.get<any>("http://localhost:8080/setCart");
+  }
 
-  senddata(cp:number)
+  senddata(cp:string)
   {
-    return this.http.get<number>(`http://localhost:8080/company/hello/${cp}`);
+    return this.http.get<number>(`http://localhost:8080/save/${cp}`);
   }
 
   
