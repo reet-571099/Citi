@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../service/data.service';
 export class savedData {
   constructor(
-    public Symbol: number,
-    public NSE: number,
-    public BSE:number,
-    public Arbitrage:number,
-    public STOCKS:number,
+    public symbol: string,
+    public nse: number,
+    public bse:number,
+    public difference:number,
+    public noOfStocks:number,
     public Profit:number,
     public like:number
   ){
@@ -21,6 +21,8 @@ export class savedData {
 export class CartComponent implements OnInit {
 
   data:any;
+  list:savedData[]=[];
+  count:number=0;
   constructor( public dataservice:DataService) { 
   }
 
@@ -30,7 +32,10 @@ export class CartComponent implements OnInit {
 refreshlist()
 {
   this.dataservice.getsaveddata().subscribe (
-    data=> this.data = data
+    data=> {this.data = data;
+    this.list=this.data[1];
+    this.count=this.data[0];
+    }
   );
 }
 
@@ -39,19 +44,23 @@ deletebyid(cp:string)
   {
      var temp:savedData[]=[];
      var k:number=0;
-     this.data.forEach(function (value) {
-      if(value.Symbol!=cp)
+     this.data[1].forEach(function (value) {
+      if(value.symbol!=cp)
       {
+         console.log("Hello ji "+value.symbol);
            temp[k]=value;
            k++;
       }
   }); 
-      this.data=temp;
+      this.data[1]=temp;
+      console.log("Data saved");
       this.dataservice.senddata(cp).subscribe(
         response=>console.log("Data sent")
       );
+      this.count=this.count-1;
+      console.log(this.count);
   }
-
+   
 
 
 

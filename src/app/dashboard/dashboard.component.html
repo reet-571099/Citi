@@ -1,13 +1,26 @@
 
  
- <div id="center" *ngIf="!data"  style="height:700px;">
-    <div *ngIf="!data" class="loader"></div>
-    <div *ngIf="!data">  <h3 style="color: black;">Loading . . . Please Wait</h3></div>
+ <div id="center" *ngIf="!data[0]"  style="height:700px;">
+    <div *ngIf="!data[0]" class="loader"></div>
+    <div *ngIf="!data[0]">  <h3 style="color: black;">Loading . . . Please Wait</h3></div>
   </div>
-  
 
-   <div [hidden]="!data" style="padding-left:100px;width:1250px;">
-    <p-table  #my id="customers" [columns]="cols" [value]="data"  selectionMode="single"  [(selection)]="selectedrow"  
+   <div *ngIf="data" style="padding-left:100px;width:1250px;">
+   <div *ngIf="data" style="border-style: ridge;">
+    <p-toast></p-toast>
+    <p-chart #chart type="line" [data]="data2" (onDataSelect)="selectData($event)"></p-chart>
+  </div>
+     <br>
+  <div  *ngIf="data" class="p-col-12 p-md-4">
+    <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="fa fa-inr"></i></span>
+        <input type="text" [(ngModel)]="value" pInputText placeholder="Enter number of Stocks">  
+             
+     </div>
+  </div>
+  <br>
+
+    <p-table  #my id="customers" [columns]="cols" [value]="data[0]"  selectionMode="single"  [(selection)]="selectedrow"  
       datakey="dt" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)" class="table table-hover table-responsive table-bordered" [responsive]="true" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
        [(first)]="first" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
   
@@ -23,36 +36,39 @@
           <th  *ngFor="let col of columns" [ngSwitch]="col.field">
               {{col.header}}
           </th>
+          <th>Profits</th>
           <th style="width:100px;"> </th>
           
       </tr>
   
       <tr>
           <th  *ngFor="let col of columns" [ngSwitch]="col.field">
-            <input *ngSwitchCase="'cp'" pInputText type="text" placeholder="Enter company name" (input)="my.filter($event.target.value, col.field, 'contains')">
-            <div *ngSwitchCase="'pv'" style="align-content: center;">
+            <input *ngSwitchCase="'symbol'" pInputText type="text" placeholder="Enter company name" (input)="my.filter($event.target.value, col.field, 'contains')">
+            <div *ngSwitchCase="'bse'" style="align-content: center;">
               Value > {{PrFilter}}
               <i class="pi pi-times" (click)="PrFilter=null;my.filter(null, col.field, col.filterMatchMode)" style="cursor:pointer;" *ngIf="PrFilter"></i>
-              <p-slider  [style]="{'padding-left':'10px','width':'100%','margin-top':'8px','color':'red'}" [(ngModel)]="PrFilter"   [min]="-5" [max]="10" (onChange)="onPrChange($event, my)"></p-slider>
+              <p-slider  [style]="{'padding-left':'10px','width':'100%','margin-top':'8px','color':'red'}" [(ngModel)]="PrFilter"   [min]="0" [max]="20000" (onChange)="onPrChange($event, my)"></p-slider>
             </div>        
            
-            <div *ngSwitchCase="'mr'" style="align-content: center;">
+            <div *ngSwitchCase="'nse'" style="align-content: center;">
               Value > {{MrFilter}}
               <i class="pi pi-times" (click)="MrFilter=null;my.filter(null, col.field, col.filterMatchMode)" style="cursor:pointer;" *ngIf="MrFilter"></i>
-              <p-slider  [style]="{'padding-left':'10px','width':'100%','margin-top':'8px','color':'red'}" [(ngModel)]="MrFilter"   [min]="1400" [max]="2500" (onChange)="onMrChange($event, my)"></p-slider>
+              <p-slider  [style]="{'padding-left':'10px','width':'100%','margin-top':'8px','color':'red'}" [(ngModel)]="MrFilter"   [min]="0" [max]="20000" (onChange)="onMrChange($event, my)"></p-slider>
             </div>
           </th>
+          <th></th>
           <th style="width:100px;"></th>
       </tr>
       </ng-template>
      
       <ng-template  pTemplate="body" let-rowData let-rowIndex="rowIndex"  >
        <tr>
-        <td>{{rowData.dt}}</td>
-        <td>{{rowData.cp}}</td>
-        <td>{{rowData.pv}}</td>
-        <td>{{rowData.pv}}</td>
-        <td>{{rowData.mr}}</td>              
+        
+        <td>{{rowData.symbol}}</td>
+        <td>{{rowData.bse}}</td>
+        <td>{{rowData.nse}}</td>
+        <td>{{rowData.difference}}</td>    
+        <td>{{value*rowData.difference}}</td>          
               <td>
             
                 <button mat-button *ngIf="rowData.like==1" (click)="savebyid(rowData, rowIndex)" style="color: red;"><span class="fa fa-heart" style="font-size: 1.5em;color:'red';"></span></button>

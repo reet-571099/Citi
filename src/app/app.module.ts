@@ -25,7 +25,10 @@ import {CardModule} from 'primeng/card';
 import {MatMenuModule} from '@angular/material/menu';
 import { HttpClientModule } from '@angular/common/http';
 
+import {ChartModule} from 'primeng/chart';
+import {ToastModule} from 'primeng/toast';
 
+import {InputTextModule} from 'primeng/inputtext';
 
 import 'hammerjs';
 import { FooterComponent } from './footer/footer.component';
@@ -70,7 +73,10 @@ import { CartComponent } from './cart/cart.component';
     SliderModule,
     HttpClientModule,
     CardModule,
-    MatMenuModule
+    MatMenuModule,
+    ChartModule,
+    ToastModule,
+    InputTextModule
   ],
   providers: [],
   entryComponents: [
