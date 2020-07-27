@@ -7,16 +7,16 @@ import { savedData } from '../cart/cart.component';
   providedIn: 'root'
 })
 export class DataService {
-
+  num:number=0;
   constructor( public http:HttpClient) { }
 
   gettabledata(){
     return this.http.get<any>("http://localhost:8080/");
   }
 
-  saveCompany(ind:string)
+  saveCompany(ind:string,value:number)
   {
-    return this.http.get<number>(`http://localhost:8080/save/${ind}`);
+    return this.http.get<number>(`http://localhost:8080/save/${ind}/${value}`);
   }
 
   getsaveddata(){
@@ -25,7 +25,8 @@ export class DataService {
 
   senddata(cp:string)
   {
-    return this.http.get<number>(`http://localhost:8080/save/${cp}`);
+    
+    return this.http.get<number>(`http://localhost:8080/save/${cp}/${this.num}`);
   }
 
   

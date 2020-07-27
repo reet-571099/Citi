@@ -57,6 +57,7 @@ data2:any;
 lab:string[]=[];
 nsedata:number[]=[];
 bsedata:number[]=[];
+options:any;
 value=100;
 getgraph()
 {
@@ -80,7 +81,7 @@ getgraph()
             label: 'Arbitrage',
             data: this.nsedata,
             fill: true,
-             borderColor: '#565656'
+             borderColor: '#2E79C4'
         },
         // {
         //     label: 'BSE',
@@ -89,7 +90,19 @@ getgraph()
         //     borderColor: '#565656'
         // }
     ]
+
+   
 }
+this.options = {
+  title: {
+      display: true,
+      text: 'Company Vs. Arbitrage Chart',
+      fontSize: 16
+  },
+  legend: {
+      position: 'top'
+  }
+};
 this.chart.refresh();
 console.log(this.data2);
 
@@ -196,7 +209,7 @@ savebyid(row,dt)
     if(this.data[0][dt].like==1)
      {
             this.data[0][dt].like=0;
-            this.dataservice.saveCompany(this.data[0][dt].symbol).subscribe (
+            this.dataservice.saveCompany(this.data[0][dt].symbol,this.value).subscribe (
               data => {
                 console.log("Deleted")
               }
@@ -206,7 +219,7 @@ savebyid(row,dt)
      else
      {
        this.data[0][dt].like=1;
-       this.dataservice.saveCompany(this.data[0][dt].symbol).subscribe (
+       this.dataservice.saveCompany(this.data[0][dt].symbol,this.value).subscribe (
         data => {
           console.log("SAVED")
         }

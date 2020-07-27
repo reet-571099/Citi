@@ -8,16 +8,17 @@
    <div *ngIf="data" style="padding-left:100px;width:1250px;">
    <div *ngIf="data" style="border-style: ridge;">
     <p-toast></p-toast>
-    <p-chart #chart type="line" [data]="data2" (onDataSelect)="selectData($event)"></p-chart>
+    <p-chart style="height:500px;" #chart type="line" [data]="data2" [options]="options" (onDataSelect)="selectData($event)"></p-chart>
   </div>
      <br>
-  <div  *ngIf="data" class="p-col-12 p-md-4">
+  <!-- <div  *ngIf="data" class="p-col-12 p-md-4">
     <div class="ui-inputgroup">
+        Enter number of Stocks:      
         <span class="ui-inputgroup-addon"><i class="fa fa-inr"></i></span>
         <input type="text" [(ngModel)]="value" pInputText placeholder="Enter number of Stocks">  
              
      </div>
-  </div>
+  </div> -->
   <br>
 
     <p-table  #my id="customers" [columns]="cols" [value]="data[0]"  selectionMode="single"  [(selection)]="selectedrow"  
@@ -25,10 +26,15 @@
        [(first)]="first" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
   
   <ng-template pTemplate="caption">
-    <div style="text-align: right">        
+    <div style="float:left;padding-bottom: 10px;" class="ui-inputgroup">
+      Enter number of Stocks: &nbsp; <span class="ui-inputgroup-addon"><i class="fa fa-suitcase"></i></span>
+      <input type="text" [(ngModel)]="value" pInputText placeholder="Enter number of Stocks">       
+   </div>
+    <div style="float: right;padding-bottom: 10px;">        
         <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
         <input type="text" pInputText size="50" placeholder="Search Here" (input)="my.filterGlobal($event.target.value, 'contains')" style="width:auto">
     </div>
+    <br>
   </ng-template>
       <ng-template pTemplate="header" let-columns >
   
