@@ -27,7 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import {ChartModule} from 'primeng/chart';
 import {ToastModule} from 'primeng/toast';
-
+import {TabViewModule} from 'primeng/tabview';
 import {InputTextModule} from 'primeng/inputtext';
 
 import 'hammerjs';
@@ -76,7 +76,8 @@ import { CartComponent } from './cart/cart.component';
     MatMenuModule,
     ChartModule,
     ToastModule,
-    InputTextModule
+    InputTextModule,
+    TabViewModule
   ],
   providers: [],
   entryComponents: [

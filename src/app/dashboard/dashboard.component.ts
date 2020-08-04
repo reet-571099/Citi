@@ -48,10 +48,10 @@ export class DashboardComponent implements OnInit {
     console.log("OUTSIDE");
     
      console.log("HELLO COMPLETED GRAPH");
- setTimeout(
-  function(){ 
-    location.reload(); 
-  }, 45000);  
+//  setTimeout(
+//   function(){ 
+//     location.reload(); 
+//   }, 45000);  
 }
 data2:any;
 lab:string[]=[];
@@ -95,7 +95,9 @@ this.options = {
   },
   legend: {
       position: 'top'
-  }
+  },
+  responsive: false,
+  maintainAspectRatio: false
 };
 this.chart.refresh();
 console.log(this.data2);

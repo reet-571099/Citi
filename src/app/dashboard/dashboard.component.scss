@@ -112,25 +112,6 @@
   }
 }
 
-
-
-// ui-slider ui-slider-handle {
-
-//  background-color:white 
-// }
-
-
-// ui-slider {
-//   background-color: rgb(206, 178, 20);
-// }
-
-
-// .ui-slider-horizontal .ui-slider-handle {
-//   top: -.25em;
-//   margin-left: -.6em;
-//   background-color: chartreuse !important;
-// }
-
 body .ui-slider-handle { background-color: white !important;}
 
 :host {
@@ -170,4 +151,12 @@ background: red;
 
 .fa-heart.active {
   color: deeppink;
+}
+
+
+
+
+
+::ng-deep .your-table .ui-datatable-scrollable-view .ui-datatable-scrollable-body {
+  min-height: 27vh;
 }
