@@ -13,7 +13,7 @@
             <hr>
             <tr><td><b>STOCKS</b></td><td>{{c.noOfStocks}}</td></tr>
             <hr>
-            <tr><td><b>PROFIT</b></td><td>{{c.noOfStocks*c.difference}}</td></tr>
+            <tr><td><b>PROFIT</b></td><td>{{(c.noOfStocks*c.difference).toFixed(3)}}</td></tr>
             <hr>
             </table>
         <div style="float:right">
@@ -23,3 +23,4 @@
       </div>
     </div>
 </div> 
+  

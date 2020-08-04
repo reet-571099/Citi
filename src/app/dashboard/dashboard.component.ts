@@ -46,12 +46,12 @@ export class DashboardComponent implements OnInit {
     }
     ); 
     console.log("OUTSIDE");
-    //  
+    
      console.log("HELLO COMPLETED GRAPH");
-//  setTimeout(
-//   function(){ 
-//     location.reload(); 
-//   }, 45000);  
+ setTimeout(
+  function(){ 
+    location.reload(); 
+  }, 45000);  
 }
 data2:any;
 lab:string[]=[];
@@ -68,8 +68,7 @@ getgraph()
      
      this.nsedata.push(this.data[1][i].difference);
      console.log(this.nsedata);
-    //  this.bsedata.push(this.data[i].bse);
-    //  console.log(this.bsedata);
+
    }
   console.log("FOR LOOP BAHAR");
   this.data2 = {
@@ -83,12 +82,7 @@ getgraph()
             fill: true,
              borderColor: '#2E79C4'
         },
-        // {
-        //     label: 'BSE',
-        //     data: this.bsedata,
-        //     fill: false,
-        //     borderColor: '#565656'
-        // }
+     
     ]
 
    

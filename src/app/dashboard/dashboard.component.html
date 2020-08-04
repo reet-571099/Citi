@@ -1,25 +1,17 @@
 
  
- <div id="center" *ngIf="!data[0]"  style="height:700px;">
-    <div *ngIf="!data[0]" class="loader"></div>
-    <div *ngIf="!data[0]">  <h3 style="color: black;">Loading . . . Please Wait</h3></div>
+ <div id="center" *ngIf="!data"  style="height:700px;">
+    <div  class="loader"></div>
+    <div >  <h3 style="color: black;">Loading . . . Please Wait</h3></div>
   </div>
 
-   <div *ngIf="data" style="padding-left:100px;width:1250px;">
-   <div *ngIf="data" style="border-style: ridge;">
+   <div [hidden]="!data" style="padding-left:100px;width:1250px;">
+     <div *ngIf="data" style="border-style: ridge;">
     <p-toast></p-toast>
     <p-chart style="height:500px;" #chart type="line" [data]="data2" [options]="options" (onDataSelect)="selectData($event)"></p-chart>
-  </div>
+    </div>
      <br>
-  <!-- <div  *ngIf="data" class="p-col-12 p-md-4">
-    <div class="ui-inputgroup">
-        Enter number of Stocks:      
-        <span class="ui-inputgroup-addon"><i class="fa fa-inr"></i></span>
-        <input type="text" [(ngModel)]="value" pInputText placeholder="Enter number of Stocks">  
-             
-     </div>
-  </div> -->
-  <br>
+     <br>
 
     <p-table  #my id="customers" [columns]="cols" [value]="data[0]"  selectionMode="single"  [(selection)]="selectedrow"  
       datakey="dt" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)" class="table table-hover table-responsive table-bordered" [responsive]="true" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
@@ -74,7 +66,7 @@
         <td>{{rowData.bse}}</td>
         <td>{{rowData.nse}}</td>
         <td>{{rowData.difference}}</td>    
-        <td>{{value*rowData.difference}}</td>          
+        <td>{{(value*rowData.difference).toFixed(3)}}</td>          
               <td>
             
                 <button mat-button *ngIf="rowData.like==1" (click)="savebyid(rowData, rowIndex)" style="color: red;"><span class="fa fa-heart" style="font-size: 1.5em;color:'red';"></span></button>

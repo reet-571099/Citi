@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
       }
       setTimeout(() => {
        this. dialogRef.close();
-      }, 1500);
+      }, 100);
    
    this.router.navigate(['/dashboard']);
     }, () => {
