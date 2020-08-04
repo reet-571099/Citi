@@ -15,6 +15,8 @@
             <hr>
             <tr><td><b>PROFIT</b></td><td>{{(c.noOfStocks*c.difference).toFixed(3)}}</td></tr>
             <hr>
+            <tr><td><b>SAVED ON</b></td><td>&nbsp;&nbsp;&nbsp;{{c.date}}</td></tr>
+              <hr>
             </table>
         <div style="float:right">
          <button (click)="deletebyid(c.symbol)" style="color: red;"><span class="fa fa-heart" style="font-size: 1.5em;color:'red';"></span></button>

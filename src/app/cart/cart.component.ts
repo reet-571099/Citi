@@ -8,7 +8,8 @@ export class savedData {
     public difference:number,
     public noOfStocks:number,
     public Profit:number,
-    public like:number
+    public like:number,
+    public date:string
   ){
 
   }

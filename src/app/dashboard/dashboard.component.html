@@ -16,15 +16,38 @@
       </div>
       </div>
   </p-tabPanel>
-  &nbsp;
-  &nbsp;
-  <p-tabPanel header="Tabular Representation" leftIcon="fa fa-table">
-<br>
 
+
+
+
+
+
+
+  &nbsp;
+  &nbsp;
+  
+  
+  
+  
+  
+  <p-tabPanel header="Tabular Representation" leftIcon="fa fa-table">
   <div [hidden]="!data" style="width:100%;">
-     <p-table  #my id="customers" [columns]="cols" [value]="data[0]"  selectionMode="single"  [(selection)]="selectedrow"  
-     datakey="dt" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)" class="table table-hover table-responsive table-bordered" [responsive]="true" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
-     [(first)]="first" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+    <!--EXCEL EXPORT-->
+     <a style="cursor: pointer" (click)="exportExcel()"><b>Click to download excel file:</b>&nbsp;&nbsp;
+     <i class="fa fa-file-excel-o" style="font-size: 2em;color:'green';"></i>
+     
+     </a>
+   
+
+     <br><br>
+  <!--TABLE-->
+  
+  <p-table #TABLE #my id="customers" [columns]="cols" [value]="data[0]"  
+     selectionMode="multiple"  [(selection)]="selectedrow"  
+     datakey="dt" 
+     class="table table-hover table-responsive table-bordered" [responsive]="true"
+     [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [(first)]="first" 
+     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
 
      <ng-template pTemplate="caption">
   <div style="float:left;padding-bottom: 10px;" class="ui-inputgroup">
@@ -34,7 +57,9 @@
   <div style="float: right;padding-bottom: 10px;">        
       <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
       <input type="text" pInputText size="50" placeholder="Search Here" (input)="my.filterGlobal($event.target.value, 'contains')" style="width:auto">
-  </div>
+      
+    </div>
+  
   <br>
       </ng-template>
     <ng-template pTemplate="header" let-columns >
@@ -73,7 +98,7 @@
     </ng-template>
    
     <ng-template style="height:400px;" pTemplate="body" let-rowData let-rowIndex="rowIndex"  >
-     <tr >
+     <tr [pSelectableRow]="rowData">
       
       <td>{{rowData.symbol}}</td>
       <td>{{rowData.bse}}</td>
