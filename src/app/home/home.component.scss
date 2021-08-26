@@ -5,10 +5,10 @@
 
 $lt-gray: #ddd;
 $background-dark: #512DA8;
-$background-light: rgba(219, 219, 219, 0.822);
+$background-light:#e7f5fe;
 $background-pale: #D1C4E9;
 $background-moredark: rgb(3, 0, 10);
-
+// #dbf0fe, #e7f5fe, #f3faff 
 @mixin zero-margin($pad-up-down, $pad-left-right) {
     margin: 0px auto;
     padding: $pad-up-down $pad-left-right;
